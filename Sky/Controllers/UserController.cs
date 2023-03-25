@@ -32,6 +32,19 @@ namespace Sky.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Check if the username already exists in the database
+                if (context.Users.Any(u => u.Username == user.Username))
+                {
+                    ModelState.AddModelError("Username", "This username is already taken.");
+                    return View(user);
+                }
+
+                // Check if the email already exists in the database
+                if (context.Users.Any(u => u.Email == user.Email))
+                {
+                    ModelState.AddModelError("Email", "This email is already registered.");
+                    return View(user);
+                }
                 context.Users.Add(user);
                 context.SaveChanges();
                 return RedirectToAction("Index");

@@ -44,27 +44,35 @@
     </tr>
 }*@
 
-<table>
+<table class="table table-hover table-light">
+    <colgroup>
+        <col style="width: 200px">
+        <col style="width: 200px">
+        <col style="width: 200px">
+        <col style="width: 200px">
+        <col style="width: 200px">
+    </colgroup>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
+                <th scope="col">Username</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Firstname)</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
             </tr>
         </thead>
+        
         <tbody>
             @foreach (var user in Model)
             {
                 <tr>
-                    <td>@user.Id</td>
+                    <td>@Html.DisplayFor(model => user.Id)</td>
                     <td>@user.Username</td>
-                    <td>@user.Firstname</td>
+                    <td>@Html.DisplayFor(model => user.Firstname)</td>
                     <td>@user.Lastname</td>
                     <td>@user.Email</td>
-                    <td>
-                        @Html.ActionLink("Update", "Update", new { id = user.Id }) |
+                    <td>@Html.ActionLink("Update", "Update", new { id = user.Id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = user.Id })
                     </td>
                 </tr>
@@ -72,8 +80,8 @@
         </tbody>
     </table>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 
 
