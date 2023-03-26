@@ -32,14 +32,13 @@ namespace Sky.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Check if the username already exists in the database
+               
                 if (context.Users.Any(u => u.Username == user.Username))
                 {
                     ModelState.AddModelError("Username", "This username is already taken.");
                     return View(user);
                 }
 
-                // Check if the email already exists in the database
                 if (context.Users.Any(u => u.Email == user.Email))
                 {
                     ModelState.AddModelError("Email", "This email is already registered.");
@@ -66,7 +65,6 @@ namespace Sky.Controllers
             return View(user);
         }
 
-        // POST: User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update([Bind(Include = "Id,Username,FirstName,LastName,Email")] User user)
